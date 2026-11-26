@@ -1,0 +1,36 @@
+name: Update brand metadata
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/brand-metadata.yml']
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update all page metadata
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          logo='https://cleandesignuk.github.io/cduk-2/images/cduk-logo.jpg'
+          for p in Path('.').rglob('*.html'):
+              if '.git' in p.parts or 'components' in p.parts: continue
+              s=p.read_text(encoding='utf-8')
+              m=re.search(r'<head\b[^>]*>(.*?)</head\s*>',s,re.I|re.S)
+              if not m: continue
+              h=m.group(1)
+              h=re.sub(r'<meta\b(?=[^>]*(?:property|name)\s*=\s*["\'](?:og:image(?::[^"\']*)?|twitter:image(?::[^"\']*)?|twitter:card)["\'])[^>]*>','',h,flags=re.I)
+              h=re.sub(r'<link\b(?=[^>]*rel\s*=\s*["\'](?:shortcut icon|icon|apple-touch-icon(?:-precomposed)?)["\'])[^>]*>','',h,flags=re.I)
+              h+='\n  <link rel="icon" type="image/jpeg" href="/cduk-2/images/cduk-logo.jpg">\n  <link rel="apple-touch-icon" href="/cduk-2/images/cduk-logo.jpg">\n  <meta property="og:image" content="'+logo+'">\n  <meta property="og:image:alt" content="Clean Design UK logo">\n  <meta name="twitter:card" content="summary">\n  <meta name="twitter:image" content="'+logo+'">\n  <meta name="twitter:image:alt" content="Clean Design UK logo">\n'
+              s=s[:m.start(1)]+h+s[m.end(1):]
+              if p==Path('index.html'):
+                  s=s.replace('<em>in North Wales</em>','<em>across North Wales</em>').replace('Website Design in North Wales','Website Design across North Wales')
+              p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- '*.html'
+          git diff --cached --quiet || (git commit -m 'Use Clean Design UK logo in page icons and sharing metadata' && git push)
