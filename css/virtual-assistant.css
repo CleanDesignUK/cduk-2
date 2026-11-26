@@ -1,0 +1,3628 @@
+
+/* =========================================================
+   CLEAN DESIGN UK
+   VIRTUAL ASSISTANT SERVICES
+   File: /cduk-2/css/virtual-assistant.css
+
+   Page-specific styling only.
+   Navbar and footer remain in /cduk-2/css/styles.css.
+========================================================= */
+
+/* =========================================================
+   01. FOUNDATION
+========================================================= */
+
+.va-page {
+  --va-red: #ba0d17;
+  --va-bright: #e12532;
+  --va-burgundy: #5a1724;
+  --va-black: #0b0b0d;
+  --va-dark: #171518;
+  --va-cream: #f5f3ef;
+  --va-paper: #faf9f7;
+  --va-ink: #171717;
+  --va-muted: #656164;
+  --va-line: #e4dddc;
+
+  width: 100%;
+  max-width: 100%;
+  overflow: clip;
+  background: #fff;
+  color: var(--va-ink);
+  font-family: "Inter", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.va-page *,
+.va-page *::before,
+.va-page *::after {
+  box-sizing: border-box;
+}
+
+.va-page h1,
+.va-page h2,
+.va-page h3,
+.va-page h4 {
+  font-family: "Manrope", sans-serif;
+  text-wrap: pretty;
+}
+
+.va-page h1,
+.va-page h2,
+.va-page h3,
+.va-page p {
+  overflow-wrap: break-word;
+}
+
+.va-page p {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.va-page img {
+  display: block;
+  max-width: 100%;
+}
+
+.va-page section[id] {
+  scroll-margin-top: 110px;
+}
+
+.va-container {
+  width: min(1240px, calc(100% - 72px));
+  margin-inline: auto;
+}
+
+.va-section {
+  position: relative;
+  padding: 110px 0;
+}
+
+.va-page a,
+.va-page button,
+.va-page input,
+.va-page select,
+.va-page textarea {
+  font-family: "Inter", Arial, sans-serif;
+}
+
+/* =========================================================
+   02. SHARED TYPOGRAPHY & BUTTONS
+========================================================= */
+
+.va-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  margin: 0;
+  color: #6a5b5e;
+  font-size: 11px !important;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.va-eyebrow-light {
+  color: #edc6cf;
+}
+
+.va-spark {
+  display: inline-block;
+  flex: 0 0 11px;
+  width: 11px;
+  height: 11px;
+  background: var(--va-bright);
+  clip-path: polygon(
+    0 0,
+    50% 20%,
+    100% 0,
+    80% 50%,
+    100% 100%,
+    50% 80%,
+    0 100%,
+    20% 50%
+  );
+}
+
+.va-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 51px;
+  padding: 14px 25px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.va-btn:hover {
+  transform: translateY(-3px);
+}
+
+.va-btn-red {
+  background: var(--va-red);
+  color: #fff;
+}
+
+.va-btn-red:hover {
+  background: #df1b28;
+  color: #fff;
+  box-shadow: 0 12px 26px rgba(186,13,23,0.2);
+}
+
+.va-btn-dark {
+  background: #141414;
+  color: #fff;
+}
+
+.va-btn-dark:hover {
+  background: var(--va-red);
+  color: #fff;
+}
+
+.va-btn-white {
+  background: #fff;
+  color: #171717;
+}
+
+.va-btn-white:hover {
+  background: #f4dfe3;
+  color: #171717;
+}
+
+.va-btn-outline-dark {
+  border-color: #b9aaab;
+  background: transparent;
+  color: #222;
+}
+
+.va-btn-outline-dark:hover {
+  border-color: #171717;
+  background: #171717;
+  color: #fff;
+}
+
+.va-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.va-page .va-btn:focus-visible,
+.va-page input:focus-visible,
+.va-page select:focus-visible,
+.va-page textarea:focus-visible,
+.va-page summary:focus-visible,
+.va-connected-links a:focus-visible {
+  outline: 3px solid #e12532;
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   03. HERO
+========================================================= */
+
+.va-hero {
+  position: relative;
+  isolation: isolate;
+  padding: 115px 0 0;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 92% 18%,
+      rgba(186,13,23,0.105),
+      transparent 42%
+    ),
+    linear-gradient(130deg, #fcfaf8, #f2eeeb);
+}
+
+.va-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(
+      rgba(0,0,0,0.023) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,0.023) 1px,
+      transparent 1px
+    );
+  background-size: 95px 95px;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black
+  );
+  pointer-events: none;
+}
+
+.va-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1.08fr) minmax(0,0.92fr);
+  align-items: center;
+  gap: clamp(35px,5vw,82px);
+  padding-bottom: 105px;
+}
+
+.va-hero-copy {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+}
+
+.va-hero .va-eyebrow {
+  color: #8f2634;
+}
+
+.va-hero h1 {
+  max-width: 780px;
+  margin: 28px 0 29px;
+  color: #121212;
+  font-size: clamp(43px,4.65vw,68px);
+  font-weight: 800;
+  letter-spacing: -0.075em;
+  line-height: 1.11;
+}
+
+.va-hero h1 span {
+  color: var(--va-red);
+}
+
+.va-hero h1 em {
+  display: block;
+  margin-top: 11px;
+  color: #672131;
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: 0.83em;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.13;
+}
+
+.va-hero-lead {
+  max-width: 560px;
+  margin: 0 0 16px;
+  color: #262123;
+  font-size: 19px !important;
+  font-weight: 700;
+  line-height: 1.6 !important;
+}
+
+.va-hero-description {
+  max-width: 565px;
+  margin: 0;
+  color: #605b5d;
+}
+
+.va-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 11px;
+  margin-top: 32px;
+}
+
+.va-hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 19px;
+  margin-top: 34px;
+}
+
+.va-hero-trust span {
+  position: relative;
+  padding-left: 16px;
+  color: #6f6769;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.va-hero-trust span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--va-red);
+  transform: translateY(-50%);
+}
+
+/* =========================================================
+   04. HERO VISUAL
+========================================================= */
+
+.va-hero-visual {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  width: 100%;
+  max-width: 570px;
+  padding: 27px;
+  overflow: hidden;
+  border-radius: 23px;
+  background:
+    radial-gradient(
+      circle at 87% 9%,
+      rgba(212,60,82,0.38),
+      transparent 44%
+    ),
+    radial-gradient(
+      circle at 0% 90%,
+      rgba(120,26,48,0.33),
+      transparent 50%
+    ),
+    linear-gradient(
+      140deg,
+      #32151e,
+      #151215
+    );
+  box-shadow:
+    0 35px 75px rgba(49,21,29,0.19),
+    inset 0 1px rgba(255,255,255,0.1);
+}
+
+.va-hero-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(
+    rgba(255,255,255,0.13) 0.7px,
+    transparent 0.8px
+  );
+  background-size: 19px 19px;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.va-hero-visual-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  color: #f5dce2;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+}
+
+.va-hero-visual-star {
+  color: #f7bdc8;
+  font-size: 29px;
+  line-height: 1;
+  animation: va-spin 30s linear infinite;
+}
+
+.va-workspace {
+  width: 100%;
+  min-width: 0;
+  margin: 28px 0 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 17px;
+  background: #faf9f7;
+  box-shadow: 0 24px 58px rgba(0,0,0,0.28);
+  transform: rotate(-1deg);
+  transition: transform 0.4s ease;
+}
+
+.va-workspace:hover {
+  transform: rotate(0deg) translateY(-4px);
+}
+
+.va-workspace-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 76px;
+  padding: 17px 19px;
+  border-bottom: 1px solid #e7e1e2;
+}
+
+.va-workspace-head > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.va-workspace-head small {
+  color: #a12a39;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.va-workspace-head strong {
+  color: #292426;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.va-workspace-indicator {
+  flex: 0 0 auto;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: #f3dfe3;
+  color: #963040;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.va-workspace-columns {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 11px;
+  padding: 16px;
+}
+
+.va-workspace-inbox,
+.va-workspace-calendar,
+.va-workspace-task {
+  min-width: 0;
+  border: 1px solid #ebe4e5;
+  border-radius: 11px;
+  background: #fff;
+}
+
+.va-workspace-inbox,
+.va-workspace-calendar {
+  padding: 15px;
+}
+
+.va-workspace-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.va-workspace-title strong {
+  color: #2d292a;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.va-workspace-title span {
+  color: #b84554;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.va-inbox-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 63px;
+  padding: 9px 0;
+  border-top: 1px solid #f1ecee;
+  animation: va-rise 0.65s both;
+}
+
+.va-inbox-item:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.va-inbox-item:nth-child(4) {
+  animation-delay: 0.32s;
+}
+
+.va-inbox-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 31px;
+  width: 31px;
+  height: 31px;
+  border-radius: 8px;
+  background: #f3e2e5;
+  color: #a53645;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.va-inbox-item > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 5px;
+}
+
+.va-inbox-item strong {
+  color: #333;
+  font-size: 11px;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.va-inbox-item small {
+  color: #878184;
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.va-inbox-item > i {
+  flex: 0 0 auto;
+  width: 6px;
+  height: 6px;
+  margin-left: auto;
+  border-radius: 50%;
+  background: #bf6572;
+}
+
+.va-workspace-side {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 11px;
+}
+
+.va-workspace-calendar {
+  flex: 1;
+}
+
+.va-calendar-days,
+.va-calendar-times {
+  display: grid;
+  grid-template-columns: repeat(5,minmax(0,1fr));
+  gap: 5px;
+}
+
+.va-calendar-days span {
+  color: #6f6668;
+  font-size: 10px;
+  text-align: center;
+}
+
+.va-calendar-times {
+  margin-top: 10px;
+}
+
+.va-calendar-times span {
+  height: 39px;
+  border-radius: 5px;
+  background: #eee8e9;
+}
+
+.va-calendar-times span:nth-child(3) {
+  background: #b94252;
+  animation: va-calendar-pulse 3s ease-in-out infinite;
+}
+
+.va-workspace-calendar p {
+  margin: 12px 0 0;
+  color: #756e70;
+  font-size: 11px;
+  text-align: center;
+}
+
+.va-workspace-task {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 15px;
+  background: #f1e0e4;
+}
+
+.va-workspace-task small {
+  color: #ad4856;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.va-workspace-task strong {
+  color: #372127;
+  font-size: 12px;
+}
+
+.va-workspace-task > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #914052;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.va-workspace-task i,
+.va-workspace-bottom i {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ae3445;
+}
+
+.va-workspace-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 18px;
+  border-top: 1px solid #e9e2e3;
+  color: #766c6f;
+  font-size: 10px;
+}
+
+.va-workspace-bottom span:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* High-contrast "More time for your business" */
+
+.va-hero-floating {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  gap: 3px;
+  max-width: 100%;
+  padding: 17px 22px;
+  overflow: hidden;
+  border: 1px solid #fff;
+  border-radius: 14px;
+  background: #fff;
+  color: #181416;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.24);
+}
+
+.va-hero-floating::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 5px;
+  background: #c41425;
+}
+
+.va-hero-floating span {
+  color: #861827;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+}
+
+.va-hero-floating strong {
+  color: #171315;
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: clamp(28px,2.5vw,36px);
+  font-weight: 400;
+  line-height: 1.17;
+}
+
+/* =========================================================
+   05. REMOTE BUSINESS SUPPORT
+========================================================= */
+
+.va-problem {
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 100% 15%,
+      rgba(186,13,23,0.06),
+      transparent 42%
+    ),
+    #f6f4f1;
+}
+
+.va-problem::before {
+  content: "BUSINESS SUPPORT";
+  position: absolute;
+  top: 23px;
+  right: -12px;
+  z-index: -1;
+  color: rgba(30,20,24,0.025);
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(100px,13vw,220px);
+  font-weight: 800;
+  letter-spacing: -0.09em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.va-problem-intro {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  align-items: end;
+  gap: 23px 65px;
+  margin-bottom: 47px;
+}
+
+.va-problem-intro .va-eyebrow {
+  grid-column: 1 / -1;
+  padding: 10px 15px;
+  border: 1px solid #e5d5d9;
+  border-radius: 999px;
+  background: #fff;
+  color: #862733;
+}
+
+.va-problem-intro h2 {
+  max-width: 790px;
+  margin: 0;
+  color: #151515;
+  font-size: clamp(40px,4.8vw,66px);
+  font-weight: 800;
+  letter-spacing: -0.075em;
+  line-height: 1.12;
+}
+
+.va-problem-intro h2 span {
+  display: block;
+  margin-top: 7px;
+  color: #75636a;
+}
+
+.va-problem-intro > p:not(.va-eyebrow) {
+  max-width: 440px;
+  margin: 0;
+  padding-top: 22px;
+  border-top: 2px solid var(--va-red);
+  color: #625b5d;
+}
+
+.va-problem-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 0.94fr 0.98fr;
+  align-items: start;
+  gap: 18px;
+}
+
+.va-problem-grid article {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-width: 0;
+  min-height: 445px;
+  padding: 29px;
+  overflow: hidden;
+  border-radius: 18px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.va-problem-grid article > span,
+.va-problem-grid h3,
+.va-problem-grid p {
+  position: relative;
+  z-index: 2;
+}
+
+.va-problem-grid article > span {
+  margin-bottom: auto;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.075em;
+}
+
+.va-problem-grid h3 {
+  margin: 0 0 18px;
+  font-size: clamp(25px,2.3vw,33px);
+  font-weight: 750;
+  letter-spacing: -0.06em;
+  line-height: 1.19;
+}
+
+.va-problem-grid p {
+  max-width: 35ch;
+  margin: 0;
+  font-size: 16px;
+}
+
+.va-problem-grid article:nth-child(1) {
+  background:
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(208,27,50,0.3),
+      transparent 45%
+    ),
+    linear-gradient(145deg,#222024,#0b0b0d);
+  color: #fff;
+}
+
+.va-problem-grid article:nth-child(1)::before {
+  content: "01";
+  position: absolute;
+  top: 45px;
+  right: -5px;
+  color: rgba(255,255,255,0.055);
+  font-size: 210px;
+  font-weight: 800;
+  letter-spacing: -0.12em;
+}
+
+.va-problem-grid article:nth-child(1) > span {
+  color: #edb3bf;
+}
+
+.va-problem-grid article:nth-child(1) h3 {
+  color: #fff;
+}
+
+.va-problem-grid article:nth-child(1) p {
+  color: #ded3d7;
+}
+
+.va-problem-grid article:nth-child(2) {
+  margin-top: 22px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18,10,12,0.12),
+      rgba(18,10,12,0.28) 35%,
+      rgba(18,10,12,0.95)
+    ),
+    url("https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1100&h=1300&fit=crop")
+      center / cover no-repeat,
+    #39282d;
+  color: #fff;
+}
+
+.va-problem-grid article:nth-child(2) > span {
+  color: #f6ccd4;
+}
+
+.va-problem-grid article:nth-child(2) h3,
+.va-problem-grid article:nth-child(2) p {
+  color: #fff;
+}
+
+.va-problem-grid article:nth-child(3) {
+  margin-top: 44px;
+  background:
+    radial-gradient(
+      ellipse at 95% 5%,
+      #ed9c9e,
+      transparent 48%
+    ),
+    linear-gradient(155deg,#f3dedb,#d8b0b4);
+  color: #25191a;
+}
+
+.va-problem-grid article:nth-child(3)::before {
+  content: "03";
+  position: absolute;
+  top: 55px;
+  right: -10px;
+  color: rgba(135,30,46,0.08);
+  font-size: 210px;
+  font-weight: 800;
+  letter-spacing: -0.12em;
+}
+
+.va-problem-grid article:nth-child(3)::after {
+  content: "";
+  position: absolute;
+  top: 115px;
+  right: 35px;
+  width: 115px;
+  height: 115px;
+  border: 20px solid rgba(176,26,47,0.24);
+  border-radius: 30px;
+  transform: rotate(-25deg);
+}
+
+.va-problem-grid article:nth-child(3) > span {
+  color: #892332;
+}
+
+.va-problem-grid article:nth-child(3) h3 {
+  color: #241719;
+}
+
+.va-problem-grid article:nth-child(3) p {
+  color: #40282e;
+}
+
+.va-problem-grid article:hover {
+  transform: translateY(-9px);
+  box-shadow: 0 22px 45px rgba(0,0,0,0.13);
+}
+
+/* =========================================================
+   06. VIRTUAL ASSISTANT SERVICES
+========================================================= */
+
+.va-services {
+  background:
+    radial-gradient(
+      ellipse at 85% 0%,
+      rgba(169,33,50,0.26),
+      transparent 45%
+    ),
+    #090a0b;
+  color: #fff;
+}
+
+.va-section-heading {
+  display: grid;
+  grid-template-columns: 1fr 0.65fr;
+  align-items: end;
+  gap: 65px;
+  margin-bottom: 60px;
+}
+
+.va-section-heading h2 {
+  margin: 22px 0 0;
+  color: #fff;
+  font-size: clamp(40px,4.6vw,65px);
+  font-weight: 750;
+  letter-spacing: -0.07em;
+  line-height: 1.14;
+}
+
+.va-section-heading h2 span {
+  display: block;
+  color: #f0c4ce;
+}
+
+.va-section-heading > p:not(.va-eyebrow) {
+  max-width: 420px;
+  margin: 0;
+  color: #d0c3c7;
+}
+
+.va-services-list {
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.va-service-row {
+  display: grid;
+  grid-template-columns: 80px minmax(0,1fr) 70px;
+  align-items: center;
+  gap: 32px;
+  padding: 33px 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  transition:
+    background 0.25s ease,
+    padding 0.25s ease;
+}
+
+.va-service-row:hover {
+  padding-left: 24px;
+  background: rgba(255,255,255,0.055);
+}
+
+.va-service-number {
+  align-self: start;
+  color: #c07987;
+  font-size: 27px;
+  font-weight: 750;
+  letter-spacing: -0.07em;
+}
+
+.va-service-row > div {
+  min-width: 0;
+}
+
+.va-service-row h3 {
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: clamp(22px,2.5vw,32px);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 1.25;
+}
+
+.va-service-row p {
+  max-width: 760px;
+  margin: 0;
+  color: #c8bdc0;
+}
+
+.va-service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.va-service-tags span {
+  padding: 7px 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 999px;
+  color: #eee2e6;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.va-service-symbol {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border: 1px solid rgba(228,143,155,0.37);
+  border-radius: 14px;
+  background: rgba(169,44,61,0.08);
+  color: #e0a0ab;
+  font-size: 29px;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.va-service-row:hover .va-service-symbol {
+  background: rgba(186,13,23,0.27);
+  transform: rotate(-8deg);
+}
+
+.va-services-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin-top: 40px;
+  padding: 32px;
+  border: 1px solid rgba(255,255,255,0.17);
+  border-radius: 16px;
+  background: linear-gradient(
+    110deg,
+    rgba(134,30,47,0.35),
+    rgba(255,255,255,0.055)
+  );
+}
+
+.va-services-footer p {
+  max-width: 700px;
+  margin: 0;
+  color: #e2d5d9;
+}
+
+.va-services-footer .va-btn {
+  flex: 0 0 auto;
+}
+
+.va-services-smallprint {
+  margin: 23px 0 0;
+  color: #aea2a6;
+}
+
+/* =========================================================
+   07. INTERACTIVE DELEGATION PLANNER
+========================================================= */
+
+.va-delegate {
+  background:
+    radial-gradient(
+      ellipse at 5% 65%,
+      rgba(186,13,23,0.055),
+      transparent 45%
+    ),
+    #f5f3ef;
+}
+
+.va-delegate-header {
+  max-width: 850px;
+  margin-bottom: 55px;
+}
+
+.va-delegate-header h2 {
+  margin: 23px 0;
+  color: #181818;
+  font-size: clamp(41px,4.6vw,65px);
+  font-weight: 750;
+  letter-spacing: -0.07em;
+  line-height: 1.13;
+}
+
+.va-delegate-header h2 span {
+  display: block;
+  color: #75636a;
+}
+
+.va-delegate-header > p:not(.va-eyebrow) {
+  max-width: 670px;
+  margin: 0;
+  color: #625c5f;
+}
+
+.va-delegate-grid {
+  display: grid;
+  grid-template-columns: 1.06fr 0.94fr;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.va-delegate-options {
+  overflow: hidden;
+  border: 1px solid #e5dddd;
+  border-radius: 19px;
+  background: #fff;
+  box-shadow: 0 15px 45px rgba(40,15,20,0.035);
+}
+
+.va-delegate-options-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 26px 27px;
+  border-bottom: 1px solid #e9e3e3;
+}
+
+.va-delegate-options-header strong {
+  color: #1b1b1b;
+  font-size: 18px;
+  font-weight: 750;
+}
+
+.va-delegate-options-header > span {
+  color: #a32e3d;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.075em;
+}
+
+.va-task {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-height: 88px;
+  padding: 17px 26px;
+  border-bottom: 1px solid #eee9e8;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.va-task:last-child {
+  border-bottom: none;
+}
+
+.va-task:hover {
+  background: #fbf5f5;
+}
+
+.va-task:has(input:checked) {
+  background: #fbecee;
+}
+
+.va-task input {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.va-task-check {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 25px;
+  width: 25px;
+  height: 25px;
+  border: 1.5px solid #c9c0c2;
+  border-radius: 7px;
+  background: #fff;
+}
+
+.va-task input:checked + .va-task-check {
+  border-color: #a71d2c;
+  background: #a71d2c;
+}
+
+.va-task input:checked + .va-task-check::after {
+  content: "";
+  width: 6px;
+  height: 11px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(45deg) translateY(-1px);
+}
+
+.va-task input:focus-visible + .va-task-check {
+  outline: 3px solid var(--va-bright);
+  outline-offset: 3px;
+}
+
+.va-task > span:last-child {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 6px;
+}
+
+.va-task strong {
+  color: #242424;
+  font-size: 16px;
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.va-task small {
+  color: #686164;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Planner result panel */
+
+.va-delegate-result {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 35px;
+  border-radius: 19px;
+  background:
+    radial-gradient(
+      ellipse at 90% 0%,
+      rgba(226,99,114,0.31),
+      transparent 48%
+    ),
+    linear-gradient(145deg,#562333,#1a161b);
+  color: #fff;
+  box-shadow: 0 24px 55px rgba(65,18,32,0.09);
+}
+
+.va-delegate-result-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.va-delegate-result-top > span {
+  color: #edb9c4;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.va-delegate-result-top strong {
+  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.va-delegate-result-body {
+  display: flex;
+  flex-direction: column;
+  margin: auto 0;
+  padding: 44px 0;
+}
+
+.va-delegate-ring {
+  display: grid;
+  place-items: center;
+  width: 85px;
+  height: 85px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  color: #edbbc5;
+  font-size: 43px;
+  animation: va-spin 38s linear infinite;
+}
+
+.va-delegate-result h3 {
+  max-width: 460px;
+  margin: 0 0 20px;
+  color: #fff;
+  font-size: clamp(28px,2.9vw,41px);
+  font-weight: 750;
+  letter-spacing: -0.06em;
+  line-height: 1.24;
+}
+
+.va-delegate-result-body > p {
+  max-width: 470px;
+  margin: 0;
+  color: #f0dee4;
+}
+
+.va-selected-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.va-selected-list:empty {
+  display: none;
+}
+
+.va-selected-list span {
+  padding: 9px 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.09);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.va-plan-button {
+  align-self: stretch;
+}
+
+.va-result-note {
+  margin: 18px 0 0;
+  color: #e3cbd3;
+  text-align: center;
+}
+
+/* =========================================================
+   08. WHY CHOOSE CLEAN DESIGN UK
+========================================================= */
+
+.va-advantages {
+  background: #fff;
+}
+
+.va-advantages-heading {
+  max-width: 960px;
+  margin: 0 auto 62px;
+  text-align: center;
+}
+
+.va-advantages-heading h2 {
+  margin: 23px 0 0;
+  color: #161616;
+  font-size: clamp(40px,4.55vw,64px);
+  font-weight: 750;
+  letter-spacing: -0.069em;
+  line-height: 1.16;
+}
+
+.va-advantages-heading h2 span {
+  display: block;
+  color: #75636a;
+}
+
+.va-advantages-grid {
+  display: grid;
+  grid-template-columns: 0.88fr 1.12fr;
+  align-items: stretch;
+  gap: 64px;
+}
+
+.va-advantages-visual {
+  position: relative;
+  min-height: 730px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #ded7d4;
+}
+
+.va-advantages-visual > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.va-advantages-visual::after {
+  content: "";
+  position: absolute;
+  inset: 42% 0 0;
+  background: linear-gradient(
+    transparent,
+    rgba(0,0,0,0.8)
+  );
+  pointer-events: none;
+}
+
+.va-advantages-image-label {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid rgba(255,255,255,0.24);
+  border-radius: 15px;
+  background: rgba(17,15,17,0.65);
+  backdrop-filter: blur(12px);
+}
+
+.va-advantages-image-label span {
+  color: #f3c6d0;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.va-advantages-image-label strong {
+  color: #fff;
+  font-size: clamp(21px,2.1vw,28px);
+  font-weight: 750;
+  letter-spacing: -0.045em;
+  line-height: 1.35;
+}
+
+.va-advantages-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.va-advantages-lead {
+  max-width: 680px;
+  margin: 0 0 30px;
+  color: #222;
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(25px,2.8vw,36px) !important;
+  font-weight: 650;
+  letter-spacing: -0.05em;
+  line-height: 1.42 !important;
+}
+
+.va-advantage-item {
+  display: grid;
+  grid-template-columns: 37px 1fr;
+  gap: 18px;
+  padding: 24px 0;
+  border-top: 1px solid #e1dcdb;
+}
+
+.va-advantage-item > span {
+  color: #a52b39;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.va-advantage-item h3 {
+  margin: 0 0 11px;
+  color: #181818;
+  font-size: 22px;
+  font-weight: 750;
+  letter-spacing: -0.047em;
+}
+
+.va-advantage-item p {
+  margin: 0;
+  color: #625d5e;
+}
+
+.va-advantages-content > .va-btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* =========================================================
+   09. FLEXIBLE VIRTUAL ASSISTANT SUPPORT
+========================================================= */
+
+.va-flexible {
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 55% 0%,
+      rgba(141,27,43,0.34),
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 0% 100%,
+      rgba(84,18,35,0.4),
+      transparent 55%
+    ),
+    #0e0d10;
+  color: #fff;
+}
+
+.va-flexible::before {
+  content: "SUPPORT";
+  position: absolute;
+  top: 0;
+  right: -20px;
+  z-index: -1;
+  color: rgba(255,255,255,0.025);
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(150px,19vw,340px);
+  font-weight: 800;
+  letter-spacing: -0.1em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.va-flexible-heading {
+  max-width: 1040px;
+  margin-bottom: 62px;
+}
+
+.va-flexible-heading .va-eyebrow {
+  padding: 10px 15px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.07);
+  color: #edcad2;
+}
+
+.va-flexible-heading h2 {
+  max-width: 1020px;
+  margin: 23px 0 24px;
+  color: #fff;
+  font-size: clamp(43px,5.15vw,73px);
+  font-weight: 750;
+  letter-spacing: -0.075em;
+  line-height: 1.1;
+}
+
+.va-flexible-heading h2 span {
+  display: block;
+  color: #f0c4ce;
+}
+
+.va-flexible-heading > p:not(.va-eyebrow) {
+  max-width: 680px;
+  margin: 0;
+  color: #e1d2d7;
+}
+
+.va-flexible-grid {
+  display: grid;
+  grid-template-columns: 0.98fr 1.08fr 0.98fr;
+  align-items: stretch;
+  gap: 15px;
+}
+
+.va-flexible-card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 530px;
+  padding: 29px;
+  overflow: hidden;
+  border-radius: 19px;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.va-flexible-card > span,
+.va-flexible-card h3,
+.va-flexible-card > p,
+.va-flexible-card ul {
+  position: relative;
+  z-index: 2;
+}
+
+.va-flexible-card > span {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+}
+
+.va-flexible-card h3 {
+  margin: auto 0 17px;
+  font-size: clamp(27px,2.45vw,34px);
+  font-weight: 750;
+  letter-spacing: -0.057em;
+  line-height: 1.2;
+}
+
+.va-flexible-card > p {
+  margin: 0 0 19px;
+  font-size: 16px;
+}
+
+.va-flexible-card ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 19px 0 0;
+  border-top: 1px solid currentColor;
+  list-style: none;
+}
+
+.va-flexible-card li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.va-flexible-card li::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Option 01 */
+
+.va-flexible-card:nth-child(1) {
+  background:
+    radial-gradient(
+      ellipse at 95% 8%,
+      #edb4a6,
+      transparent 48%
+    ),
+    linear-gradient(150deg,#f8f0e9,#e7d6cf);
+  color: #24191a;
+}
+
+.va-flexible-card:nth-child(1)::before {
+  content: "";
+  position: absolute;
+  top: 85px;
+  right: 17%;
+  width: 150px;
+  height: 150px;
+  border: 31px solid #b84652;
+  border-radius: 36px;
+  box-shadow:
+    17px 21px 0 #8e2635,
+    25px 35px 35px rgba(112,26,44,0.2);
+  transform: rotate(-24deg);
+  animation: va-soft-float 8s ease-in-out infinite;
+}
+
+.va-flexible-card:nth-child(1) > span {
+  color: #892638;
+}
+
+.va-flexible-card:nth-child(1) h3 {
+  color: #211719;
+}
+
+.va-flexible-card:nth-child(1) > p,
+.va-flexible-card:nth-child(1) li {
+  color: #513b40;
+}
+
+.va-flexible-card:nth-child(1) ul {
+  border-color: rgba(57,28,34,0.2);
+}
+
+/* Option 02 */
+
+.va-flexible-card:nth-child(2) {
+  background:
+    radial-gradient(
+      ellipse at 85% 5%,
+      rgba(255,180,184,0.43),
+      transparent 43%
+    ),
+    linear-gradient(
+      150deg,
+      #c72838,
+      #891725 78%,
+      #57121d
+    );
+  color: #fff;
+  transform: translateY(-20px);
+  box-shadow: 0 25px 55px rgba(0,0,0,0.14);
+}
+
+.va-flexible-card:nth-child(2)::before {
+  content: "";
+  position: absolute;
+  top: 63px;
+  right: -28px;
+  width: 255px;
+  height: 255px;
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 35px rgba(255,255,255,0.09),
+    0 0 0 70px rgba(255,255,255,0.045);
+  animation: va-orbit 9s ease-in-out infinite;
+}
+
+.va-flexible-card:nth-child(2) > span,
+.va-flexible-card:nth-child(2) > p,
+.va-flexible-card:nth-child(2) li {
+  color: #ffe5e9;
+}
+
+.va-flexible-card:nth-child(2) h3 {
+  color: #fff;
+}
+
+.va-flexible-card:nth-child(2) ul {
+  border-color: rgba(255,255,255,0.3);
+}
+
+/* Option 03 */
+
+.va-flexible-card:nth-child(3) {
+  background:
+    radial-gradient(
+      ellipse at 90% 8%,
+      rgba(207,46,70,0.35),
+      transparent 53%
+    ),
+    linear-gradient(145deg,#353035,#161518);
+  color: #fff;
+}
+
+.va-flexible-card:nth-child(3)::before {
+  content: "";
+  position: absolute;
+  top: 95px;
+  right: 45px;
+  width: 140px;
+  height: 175px;
+  border: 1px solid rgba(255,255,255,0.43);
+  border-radius: 17px;
+  background: linear-gradient(
+    155deg,
+    rgba(221,88,105,0.42),
+    rgba(255,255,255,0.035)
+  );
+  box-shadow:
+    -23px 19px 0 -2px rgba(183,36,55,0.32),
+    -46px 37px 0 -4px rgba(255,255,255,0.055);
+  transform: rotate(13deg);
+  animation: va-soft-float 9s ease-in-out infinite reverse;
+}
+
+.va-flexible-card:nth-child(3) > span {
+  color: #efb7c2;
+}
+
+.va-flexible-card:nth-child(3) h3 {
+  color: #fff;
+}
+
+.va-flexible-card:nth-child(3) > p,
+.va-flexible-card:nth-child(3) li {
+  color: #e5d9dd;
+}
+
+.va-flexible-card:nth-child(3) ul {
+  border-color: rgba(255,255,255,0.22);
+}
+
+.va-flexible-card:nth-child(1):hover,
+.va-flexible-card:nth-child(3):hover {
+  transform: translateY(-11px);
+}
+
+.va-flexible-card:nth-child(2):hover {
+  transform: translateY(-30px);
+}
+
+/* Budget callout */
+
+.va-flexible-bottom {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  margin-top: 43px;
+  padding: 31px 35px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 17px;
+  background: linear-gradient(
+    110deg,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.035)
+  );
+  backdrop-filter: blur(8px);
+}
+
+.va-flexible-bottom::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 0;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: #f05d6c;
+}
+
+.va-flexible-bottom p {
+  max-width: 770px;
+  margin: 0;
+  color: #e6d8dd;
+}
+
+.va-flexible-bottom p strong {
+  color: #fff;
+}
+
+.va-flexible-bottom .va-btn {
+  flex: 0 0 auto;
+  background: #fff;
+  color: #151515;
+}
+
+.va-flexible-bottom .va-btn:hover {
+  background: #f0dade;
+  color: #151515;
+}
+
+/* =========================================================
+   10. HOW THE SERVICE WORKS
+========================================================= */
+
+.va-process {
+  background: #fff;
+}
+
+.va-process-heading {
+  max-width: 880px;
+  margin-bottom: 58px;
+}
+
+.va-process-heading h2 {
+  margin: 22px 0 0;
+  color: #171717;
+  font-size: clamp(40px,4.5vw,63px);
+  font-weight: 750;
+  letter-spacing: -0.069em;
+  line-height: 1.17;
+}
+
+.va-process-heading h2 span {
+  display: block;
+  color: #75636a;
+}
+
+.va-process-list {
+  border-top: 1px solid #ded8d8;
+}
+
+.va-process-list article {
+  display: grid;
+  grid-template-columns: 115px 0.95fr 1.05fr;
+  align-items: start;
+  gap: 40px;
+  padding: 38px 15px;
+  border-bottom: 1px solid #ded8d8;
+  transition:
+    background 0.25s ease,
+    padding 0.25s ease;
+}
+
+.va-process-list article:hover {
+  padding-left: 25px;
+  background: #faf3f4;
+}
+
+.va-process-list article > span {
+  color: #ae2635;
+  font-size: 40px;
+  font-weight: 750;
+  letter-spacing: -0.074em;
+  line-height: 1;
+}
+
+.va-process-list h3 {
+  margin: 0;
+  color: #171717;
+  font-size: clamp(21px,2.4vw,31px);
+  font-weight: 750;
+  letter-spacing: -0.052em;
+  line-height: 1.25;
+}
+
+.va-process-list p {
+  max-width: 505px;
+  margin: 0;
+  color: #625d5e;
+}
+
+/* =========================================================
+   11. INDUSTRIES AND BUSINESS TYPES
+========================================================= */
+
+.va-industries {
+  background:
+    radial-gradient(
+      ellipse at 90% 0%,
+      rgba(164,25,45,0.28),
+      transparent 43%
+    ),
+    #0a0a0d;
+  color: #fff;
+}
+
+.va-industries-heading {
+  max-width: 950px;
+  margin-bottom: 58px;
+}
+
+.va-industries-heading h2 {
+  margin: 23px 0 0;
+  color: #fff;
+  font-size: clamp(40px,4.5vw,64px);
+  font-weight: 750;
+  letter-spacing: -0.07em;
+  line-height: 1.16;
+}
+
+.va-industries-heading h2 span {
+  display: block;
+  color: #f0c4ce;
+}
+
+.va-industries-grid {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 13px;
+}
+
+.va-industries-grid article {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 355px;
+  padding: 27px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 17px;
+  background: linear-gradient(
+    155deg,
+    rgba(255,255,255,0.11),
+    rgba(255,255,255,0.035)
+  );
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.va-industries-grid article::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -100px;
+  width: 230px;
+  height: 230px;
+  border: 1px solid rgba(236,119,137,0.15);
+  border-radius: 50%;
+  box-shadow: 0 0 0 35px rgba(236,119,137,0.035);
+}
+
+.va-industries-grid article:hover {
+  background: rgba(161,41,60,0.2);
+  transform: translateY(-6px);
+}
+
+.va-industries-grid article > span {
+  position: relative;
+  z-index: 1;
+  color: #e9abb8;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+}
+
+.va-industries-grid h3 {
+  position: relative;
+  z-index: 1;
+  margin: auto 0 17px;
+  color: #fff;
+  font-size: clamp(22px,2.2vw,29px);
+  font-weight: 750;
+  letter-spacing: -0.054em;
+  line-height: 1.24;
+}
+
+.va-industries-grid p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: #e2d6da;
+}
+
+/* =========================================================
+   12. CONNECTED DIGITAL SERVICES
+========================================================= */
+
+.va-connected {
+  background: #f5f3ef;
+}
+
+.va-connected-grid {
+  display: grid;
+  grid-template-columns: 0.98fr 1.02fr;
+  align-items: center;
+  gap: 90px;
+}
+
+.va-connected-copy h2 {
+  margin: 23px 0;
+  color: #171717;
+  font-size: clamp(39px,4.3vw,60px);
+  font-weight: 750;
+  letter-spacing: -0.067em;
+  line-height: 1.15;
+}
+
+.va-connected-copy h2 span {
+  display: block;
+  color: #75636a;
+}
+
+.va-connected-copy > p:not(.va-eyebrow) {
+  max-width: 540px;
+  margin: 0 0 30px;
+  color: #655f61;
+}
+
+.va-connected-links {
+  border-top: 1px solid #d9d2d2;
+}
+
+.va-connected-links a {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 27px 43px 27px 0;
+  border-bottom: 1px solid #d9d2d2;
+  text-decoration: none;
+  transition:
+    padding 0.25s ease,
+    background 0.25s ease;
+}
+
+.va-connected-links a:hover {
+  padding-left: 12px;
+}
+
+.va-connected-links a::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  color: var(--va-red);
+  font-size: 28px;
+  font-weight: 400;
+  transform: translateY(-50%);
+}
+
+.va-connected-links span {
+  color: #171717;
+  font-size: 23px;
+  font-weight: 750;
+  letter-spacing: -0.048em;
+}
+
+.va-connected-links small {
+  color: #625d5e;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   13. LOCATION COVERAGE
+========================================================= */
+
+.va-locations {
+  background:
+    radial-gradient(
+      ellipse at 88% 10%,
+      rgba(185,37,58,0.42),
+      transparent 50%
+    ),
+    linear-gradient(130deg,#24151c,#090a0b);
+  color: #fff;
+}
+
+.va-location-grid {
+  display: grid;
+  grid-template-columns: 1.06fr 0.94fr;
+  align-items: center;
+  gap: 80px;
+}
+
+.va-location-grid h2 {
+  margin: 24px 0;
+  color: #fff;
+  font-size: clamp(40px,4.5vw,63px);
+  font-weight: 750;
+  letter-spacing: -0.069em;
+  line-height: 1.16;
+}
+
+.va-location-grid h2 span {
+  display: block;
+  color: #f0c4ce;
+}
+
+.va-location-grid > div:first-child > p:not(.va-eyebrow) {
+  max-width: 575px;
+  margin: 0 0 19px;
+  color: #e1d3d8;
+}
+
+.va-location-grid > div:first-child > .va-btn {
+  margin-top: 15px;
+}
+
+.va-location-card {
+  padding: 33px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  background: rgba(255,255,255,0.075);
+  backdrop-filter: blur(9px);
+}
+
+.va-location-card > span {
+  color: #f0bfc9;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.va-location-list {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 9px;
+  margin-top: 30px;
+}
+
+.va-location-list span {
+  padding: 13px;
+  border: 1px solid rgba(255,255,255,0.11);
+  border-radius: 9px;
+  background: rgba(255,255,255,0.06);
+  color: #f5eaed;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.va-location-card-footer {
+  margin-top: 30px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.va-location-card-footer strong {
+  color: #fff;
+  font-size: 17px;
+}
+
+.va-location-card-footer p {
+  margin: 10px 0;
+  color: #e0d3d8;
+}
+
+.va-location-card-footer small {
+  color: #efc0cb;
+  font-size: 13px;
+}
+
+/* =========================================================
+   14. FAQ
+========================================================= */
+
+.va-faq {
+  background: #fff;
+}
+
+.va-faq-heading {
+  max-width: 920px;
+  margin: 0 auto 58px;
+  text-align: center;
+}
+
+.va-faq-heading h2 {
+  margin: 23px 0;
+  color: #171717;
+  font-size: clamp(40px,4.5vw,63px);
+  font-weight: 750;
+  letter-spacing: -0.07em;
+  line-height: 1.16;
+}
+
+.va-faq-heading h2 span {
+  display: block;
+  color: #75636a;
+}
+
+.va-faq-heading > p:not(.va-eyebrow) {
+  max-width: 720px;
+  margin: 0 auto;
+  color: #625c5f;
+}
+
+.va-faq-columns {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  align-items: start;
+  gap: 14px;
+}
+
+.va-faq-column {
+  display: grid;
+  gap: 11px;
+}
+
+.va-faq-column details {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #e8e2e1;
+  border-radius: 13px;
+  background: #f8f7f5;
+}
+
+.va-faq-column details[open] {
+  border-color: #e9cbd2;
+  background: #fcf0f2;
+}
+
+.va-faq-column summary {
+  position: relative;
+  padding: 22px 54px 22px 23px;
+  list-style: none;
+  color: #191919;
+  font-size: 17px;
+  font-weight: 750;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.va-faq-column summary::-webkit-details-marker {
+  display: none;
+}
+
+.va-faq-column summary::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  color: #b02434;
+  font-size: 27px;
+  font-weight: 400;
+  transform: translateY(-50%);
+}
+
+.va-faq-column details[open] summary::after {
+  content: "−";
+}
+
+.va-faq-column details p {
+  margin: 0;
+  padding: 0 23px 24px;
+  color: #625b5d;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.va-faq-help {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 38px;
+  padding: 29px 0 0;
+  border-top: 1px solid #e5dddd;
+}
+
+.va-faq-help p {
+  margin: 0;
+  color: #373233;
+  font-weight: 650;
+}
+
+.va-faq-help .va-btn {
+  flex: 0 0 auto;
+}
+
+/* =========================================================
+   15. FINAL CONTACT SECTION
+========================================================= */
+
+.va-contact {
+  background:
+    radial-gradient(
+      ellipse at 85% 0%,
+      rgba(198,40,62,0.39),
+      transparent 50%
+    ),
+    linear-gradient(130deg,#391824,#111013);
+  color: #fff;
+}
+
+.va-contact-grid {
+  display: grid;
+  grid-template-columns: 0.83fr 1.17fr;
+  align-items: start;
+  gap: 76px;
+}
+
+.va-contact-copy h2 {
+  margin: 25px 0;
+  color: #fff;
+  font-size: clamp(44px,5.15vw,73px);
+  font-weight: 750;
+  letter-spacing: -0.073em;
+  line-height: 1.1;
+}
+
+.va-contact-copy h2 em {
+  display: block;
+  color: #f0c4cd;
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: 1.12em;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.va-contact-copy > p:not(.va-eyebrow) {
+  max-width: 530px;
+  margin: 0 0 19px;
+  color: #eadce1;
+}
+
+.va-contact-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 17px;
+  margin-top: 40px;
+}
+
+.va-contact-links a {
+  max-width: 100%;
+  color: #fff;
+  font-size: clamp(16px,1.8vw,21px);
+  font-weight: 650;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.va-contact-foot {
+  margin-top: 65px;
+  color: #e6b3be;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+}
+
+/* =========================================================
+   16. CONTACT FORM
+========================================================= */
+
+.va-form-card {
+  min-width: 0;
+  padding: 40px;
+  border-radius: 21px;
+  background: #fff;
+  color: #171717;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.19);
+}
+
+.va-form-heading > span {
+  color: #a32432;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.va-form-heading h3 {
+  margin: 14px 0 12px;
+  color: #171717;
+  font-size: 29px;
+  font-weight: 750;
+  letter-spacing: -0.05em;
+}
+
+.va-form-heading p {
+  margin: 0 0 29px;
+  color: #666164;
+}
+
+.va-form-card form {
+  position: relative;
+}
+
+.va-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 17px;
+}
+
+.va-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 9px;
+}
+
+.va-field label {
+  color: #333;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.va-field input,
+.va-field select,
+.va-field textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 52px;
+  padding: 12px 14px;
+  border: 1px solid #dedada;
+  border-radius: 10px;
+  outline: none;
+  background: #fff;
+  color: #222;
+  font-size: 16px;
+  line-height: 1.5;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.va-field input::placeholder,
+.va-field textarea::placeholder {
+  color: #8d8789;
+}
+
+.va-field input:focus,
+.va-field select:focus,
+.va-field textarea:focus {
+  border-color: var(--va-red);
+  box-shadow: 0 0 0 3px rgba(186,13,23,0.085);
+}
+
+.va-field textarea {
+  min-height: 145px;
+  resize: vertical;
+}
+
+.va-field-full {
+  grid-column: 1 / -1;
+}
+
+.va-honeypot {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  pointer-events: none;
+}
+
+.va-submit {
+  width: 100%;
+  margin-top: 23px;
+}
+
+.va-form-status {
+  margin: 14px 0 0;
+  font-size: 16px;
+}
+
+.va-form-status:empty {
+  display: none;
+}
+
+.va-form-status.is-error {
+  color: #aa1725;
+}
+
+.va-form-status.is-success {
+  color: #196b45;
+}
+
+.va-form-privacy {
+  margin: 19px 0 0;
+  color: #686164;
+  font-size: 16px;
+  text-align: center;
+}
+
+.va-form-privacy a {
+  color: #9b1e2b;
+  text-decoration: underline;
+}
+
+/* =========================================================
+   17. ANIMATIONS
+========================================================= */
+
+@keyframes va-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes va-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes va-calendar-pulse {
+  0%, 100% {
+    background: #b94252;
+  }
+  50% {
+    background: #e8a0ac;
+  }
+}
+
+@keyframes va-soft-float {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -12px;
+  }
+}
+
+@keyframes va-orbit {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 14px;
+  }
+}
+
+/* Existing JS scroll reveal */
+
+.va-motion-ready .va-reveal {
+  transition:
+    opacity 0.65s ease,
+    translate 0.65s ease;
+}
+
+.va-motion-ready .va-reveal:not(.is-visible) {
+  opacity: 0;
+  translate: 0 23px;
+}
+
+.va-motion-ready .va-reveal.is-visible {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* =========================================================
+   18. LAPTOP
+========================================================= */
+
+@media (max-width: 1120px) {
+  .va-hero-grid {
+    gap: 35px;
+  }
+
+  .va-hero h1 {
+    font-size: clamp(40px,4.5vw,58px);
+  }
+
+  .va-hero-visual {
+    padding: 20px;
+  }
+
+  .va-workspace-columns {
+    padding: 12px;
+  }
+
+  .va-workspace-inbox,
+  .va-workspace-calendar {
+    padding: 11px;
+  }
+
+  .va-problem-grid article {
+    min-height: 420px;
+    padding: 25px;
+  }
+
+  .va-problem-grid h3 {
+    font-size: 27px;
+  }
+
+  .va-flexible-card {
+    min-height: 545px;
+    padding: 25px;
+  }
+
+  .va-flexible-card h3 {
+    font-size: 28px;
+  }
+
+  .va-advantages-grid,
+  .va-connected-grid,
+  .va-location-grid,
+  .va-contact-grid {
+    gap: 45px;
+  }
+
+  .va-industries-grid article {
+    padding: 23px;
+  }
+}
+
+/* =========================================================
+   19. TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .va-container {
+    width: min(760px,calc(100% - 56px));
+  }
+
+  .va-section {
+    padding: 86px 0;
+  }
+
+  .va-hero {
+    padding-top: 87px;
+  }
+
+  .va-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 47px;
+    padding-bottom: 75px;
+  }
+
+  .va-hero-copy {
+    max-width: 760px;
+    margin-inline: auto;
+  }
+
+  .va-hero h1 {
+    font-size: clamp(46px,6.6vw,67px);
+  }
+
+  .va-hero-visual {
+    max-width: 575px;
+    margin-inline: auto;
+  }
+
+  .va-problem-intro {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .va-problem-intro h2 {
+    max-width: 760px;
+  }
+
+  .va-problem-intro > p:not(.va-eyebrow) {
+    max-width: 660px;
+    padding-top: 18px;
+  }
+
+  .va-problem-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 13px;
+  }
+
+  .va-problem-grid article {
+    min-height: 405px;
+    margin-top: 0 !important;
+  }
+
+  .va-problem-grid article:nth-child(3) {
+    grid-column: 1 / -1;
+    min-height: 285px;
+  }
+
+  .va-section-heading {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .va-delegate-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .va-delegate-result {
+    min-height: 395px;
+  }
+
+  .va-delegate-result-body {
+    padding: 32px 0;
+  }
+
+  .va-advantages-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .va-advantages-visual {
+    min-height: 0;
+    height: 490px;
+  }
+
+  .va-advantages-content > .va-btn {
+    margin-top: 20px;
+  }
+
+  /* Swipeable flexible support options */
+
+  .va-flexible-grid {
+    display: flex;
+    gap: 14px;
+    padding: 5px 4px 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .va-flexible-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .va-flexible-card {
+    flex: 0 0 min(76vw,375px);
+    min-height: 545px;
+    scroll-snap-align: start;
+  }
+
+  .va-flexible-card:nth-child(2),
+  .va-flexible-card:nth-child(2):hover,
+  .va-flexible-card:nth-child(1):hover,
+  .va-flexible-card:nth-child(3):hover {
+    transform: none;
+  }
+
+  .va-flexible-bottom {
+    margin-top: 26px;
+  }
+
+  .va-process-list article {
+    grid-template-columns: 70px 1fr;
+    gap: 18px 25px;
+  }
+
+  .va-process-list article p {
+    grid-column: 2;
+  }
+
+  .va-industries-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+
+  .va-industries-grid article {
+    min-height: 300px;
+  }
+
+  .va-connected-grid,
+  .va-location-grid,
+  .va-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 43px;
+  }
+
+  .va-contact-foot {
+    margin-top: 40px;
+  }
+}
+
+/* =========================================================
+   20. MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+  .va-container {
+    width: calc(100% - 40px);
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  .va-section {
+    padding: 70px 0;
+  }
+
+  .va-eyebrow {
+    gap: 8px;
+    font-size: 10px !important;
+    letter-spacing: 0.07em;
+  }
+
+  .va-btn {
+    min-height: 48px;
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+
+  /* Hero */
+
+  .va-hero {
+    padding-top: 63px;
+  }
+
+  .va-hero-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 39px;
+    padding-bottom: 55px;
+  }
+
+  .va-hero-copy {
+    width: 100%;
+    max-width: 520px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .va-hero-copy .va-eyebrow {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .va-hero h1 {
+    margin: 22px 0 23px;
+    font-size: clamp(34px,8.1vw,48px);
+    letter-spacing: -0.067em;
+    line-height: 1.13;
+  }
+
+  .va-hero h1 em {
+    margin-top: 10px;
+    font-size: 0.83em;
+  }
+
+  .va-hero-lead {
+    margin: 0 auto 16px;
+    font-size: 18px !important;
+    text-align: center;
+  }
+
+  .va-hero-description {
+    max-width: 490px;
+    margin: 0 auto;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .va-actions {
+    justify-content: center;
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  .va-hero-trust {
+    justify-content: center;
+    gap: 10px 14px;
+    margin-top: 26px;
+  }
+
+  .va-hero-trust span {
+    font-size: 12px;
+  }
+
+  /* Hero visual */
+
+  .va-hero-visual {
+    width: 100%;
+    max-width: 465px;
+    padding: 17px;
+    border-radius: 18px;
+  }
+
+  .va-hero-visual-top {
+    font-size: 9px;
+  }
+
+  .va-workspace {
+    margin: 25px 0 16px;
+    transform: none;
+  }
+
+  .va-workspace:hover {
+    transform: none;
+  }
+
+  .va-workspace-head {
+    min-height: 65px;
+    padding: 12px;
+  }
+
+  .va-workspace-head strong {
+    font-size: 14px;
+  }
+
+  .va-workspace-indicator {
+    padding: 6px;
+    font-size: 8px;
+  }
+
+  .va-workspace-columns {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .va-workspace-inbox,
+  .va-workspace-calendar,
+  .va-workspace-task {
+    padding: 9px;
+  }
+
+  .va-workspace-title strong {
+    font-size: 11px;
+  }
+
+  .va-inbox-item {
+    gap: 6px;
+    min-height: 58px;
+  }
+
+  .va-inbox-icon {
+    flex-basis: 27px;
+    width: 27px;
+    height: 27px;
+    font-size: 9px;
+  }
+
+  .va-inbox-item strong {
+    font-size: 9px;
+  }
+
+  .va-inbox-item small {
+    font-size: 8px;
+  }
+
+  .va-calendar-days,
+  .va-calendar-times {
+    gap: 3px;
+  }
+
+  .va-calendar-times span {
+    height: 33px;
+  }
+
+  .va-workspace-task strong {
+    font-size: 10px;
+  }
+
+  .va-workspace-calendar p {
+    font-size: 10px;
+  }
+
+  .va-hero-floating {
+    display: flex;
+    align-self: stretch;
+    padding: 15px 19px;
+  }
+
+  .va-hero-floating span {
+    font-size: 11px;
+  }
+
+  .va-hero-floating strong {
+    font-size: 29px;
+  }
+
+  /* Business support */
+
+  .va-problem-intro {
+    gap: 19px;
+    margin-bottom: 35px;
+  }
+
+  .va-problem-intro .va-eyebrow {
+    padding: 9px 12px;
+  }
+
+  .va-problem-intro h2 {
+    font-size: clamp(36px,8.3vw,45px);
+    line-height: 1.12;
+  }
+
+  .va-problem-intro > p:not(.va-eyebrow) {
+    font-size: 16px;
+  }
+
+  .va-problem-grid {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+
+  .va-problem-grid article,
+  .va-problem-grid article:nth-child(3) {
+    grid-column: auto;
+    min-height: 355px;
+    margin: 0 !important;
+    padding: 26px;
+    border-radius: 17px;
+  }
+
+  .va-problem-grid article:nth-child(2) {
+    min-height: 385px;
+  }
+
+  .va-problem-grid h3 {
+    max-width: 340px;
+    font-size: 29px;
+  }
+
+  .va-problem-grid p {
+    max-width: 335px;
+    font-size: 16px;
+  }
+
+  /* Services */
+
+  .va-section-heading {
+    gap: 20px;
+    margin-bottom: 37px;
+  }
+
+  .va-section-heading h2 {
+    font-size: 37px;
+  }
+
+  .va-service-row {
+    grid-template-columns: 35px minmax(0,1fr);
+    align-items: start;
+    gap: 12px;
+    padding: 27px 0;
+  }
+
+  .va-service-row:hover {
+    padding-left: 0;
+  }
+
+  .va-service-number {
+    padding-top: 3px;
+    font-size: 20px;
+  }
+
+  .va-service-row h3 {
+    font-size: 23px;
+  }
+
+  .va-service-row p {
+    font-size: 16px;
+  }
+
+  .va-service-tags {
+    gap: 6px;
+    margin-top: 15px;
+  }
+
+  .va-service-tags span {
+    padding: 7px 10px;
+    font-size: 11px;
+  }
+
+  .va-service-symbol {
+    display: none;
+  }
+
+  .va-services-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px;
+  }
+
+  .va-services-footer .va-btn {
+    width: 100%;
+  }
+
+  /* Delegation planner */
+
+  .va-delegate-header {
+    margin-bottom: 35px;
+  }
+
+  .va-delegate-header h2 {
+    font-size: 38px;
+  }
+
+  .va-delegate-options-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 21px;
+  }
+
+  .va-delegate-options-header strong {
+    font-size: 17px;
+  }
+
+  .va-task {
+    gap: 11px;
+    min-height: 85px;
+    padding: 14px 17px;
+  }
+
+  .va-task strong {
+    font-size: 15px;
+  }
+
+  .va-task small {
+    font-size: 13px;
+  }
+
+  .va-delegate-result {
+    min-height: 0;
+    padding: 25px;
+  }
+
+  .va-delegate-result-top {
+    flex-wrap: wrap;
+  }
+
+  .va-delegate-result-body {
+    padding: 36px 0;
+  }
+
+  .va-delegate-ring {
+    width: 67px;
+    height: 67px;
+    margin-bottom: 26px;
+    font-size: 34px;
+  }
+
+  .va-delegate-result h3 {
+    font-size: 31px;
+  }
+
+  /* Why choose us */
+
+  .va-advantages-heading {
+    margin-bottom: 36px;
+  }
+
+  .va-advantages-heading h2 {
+    font-size: 36px;
+  }
+
+  .va-advantages-grid {
+    gap: 31px;
+  }
+
+  .va-advantages-visual {
+    height: 420px;
+    border-radius: 16px;
+  }
+
+  .va-advantages-image-label {
+    right: 13px;
+    bottom: 13px;
+    left: 13px;
+    padding: 18px;
+  }
+
+  .va-advantages-image-label strong {
+    font-size: 21px;
+  }
+
+  .va-advantages-lead {
+    font-size: 26px !important;
+  }
+
+  .va-advantage-item {
+    grid-template-columns: 29px 1fr;
+    gap: 13px;
+    padding: 22px 0;
+  }
+
+  .va-advantage-item h3 {
+    font-size: 20px;
+  }
+
+  .va-advantages-content > .va-btn {
+    width: 100%;
+  }
+
+  /* Flexible support */
+
+  .va-flexible-heading {
+    margin-bottom: 40px;
+  }
+
+  .va-flexible-heading h2 {
+    font-size: clamp(37px,8.5vw,47px);
+  }
+
+  .va-flexible-grid {
+    margin-right: -20px;
+    padding-right: 20px;
+  }
+
+  .va-flexible-card {
+    flex: 0 0 min(84vw,345px);
+    min-height: 540px;
+    padding: 24px;
+  }
+
+  .va-flexible-card h3 {
+    font-size: 28px;
+  }
+
+  .va-flexible-card > p,
+  .va-flexible-card li {
+    font-size: 16px;
+  }
+
+  .va-flexible-bottom {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 22px;
+    margin-top: 25px;
+    padding: 25px;
+  }
+
+  .va-flexible-bottom .va-btn {
+    width: 100%;
+  }
+
+  /* Process */
+
+  .va-process-heading {
+    margin-bottom: 38px;
+  }
+
+  .va-process-heading h2 {
+    font-size: 37px;
+  }
+
+  .va-process-list article {
+    grid-template-columns: 45px minmax(0,1fr);
+    gap: 14px;
+    padding: 27px 0;
+  }
+
+  .va-process-list article:hover {
+    padding-left: 0;
+  }
+
+  .va-process-list article > span {
+    font-size: 26px;
+  }
+
+  .va-process-list h3 {
+    font-size: 21px;
+  }
+
+  .va-process-list p {
+    grid-column: 2;
+    font-size: 16px;
+  }
+
+  /* Industries */
+
+  .va-industries-heading {
+    margin-bottom: 39px;
+  }
+
+  .va-industries-heading h2 {
+    font-size: 37px;
+  }
+
+  .va-industries-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .va-industries-grid article {
+    min-height: 260px;
+    padding: 25px;
+  }
+
+  .va-industries-grid h3 {
+    font-size: 26px;
+  }
+
+  /* Related services */
+
+  .va-connected-copy h2 {
+    font-size: 38px;
+  }
+
+  .va-connected-links span {
+    font-size: 21px;
+  }
+
+  .va-connected-links small {
+    font-size: 14px;
+  }
+
+  /* Locations */
+
+  .va-location-grid h2 {
+    font-size: 38px;
+  }
+
+  .va-location-card {
+    padding: 23px;
+  }
+
+  .va-location-list {
+    gap: 8px;
+  }
+
+  .va-location-list span {
+    padding: 11px;
+    font-size: 13px;
+  }
+
+  /* FAQ */
+
+  .va-faq-heading {
+    margin-bottom: 39px;
+  }
+
+  .va-faq-heading h2 {
+    font-size: 37px;
+  }
+
+  .va-faq-columns {
+    grid-template-columns: 1fr;
+    gap: 11px;
+  }
+
+  .va-faq-column summary {
+    padding: 20px 48px 20px 18px;
+    font-size: 16px;
+  }
+
+  .va-faq-column details p {
+    padding: 0 18px 22px;
+    font-size: 16px;
+  }
+
+  .va-faq-help {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 19px;
+  }
+
+  .va-faq-help .va-btn {
+    width: 100%;
+  }
+
+  /* Contact */
+
+  .va-contact-copy h2 {
+    font-size: clamp(44px,10vw,60px);
+  }
+
+  .va-contact-links {
+    margin-top: 29px;
+  }
+
+  .va-form-card {
+    padding: 25px;
+    border-radius: 17px;
+  }
+
+  .va-form-heading h3 {
+    font-size: 26px;
+  }
+
+  .va-form-grid {
+    grid-template-columns: 1fr;
+    gap: 17px;
+  }
+
+  .va-field-full {
+    grid-column: auto;
+  }
+
+  .va-field label {
+    font-size: 15px;
+  }
+
+  .va-field input,
+  .va-field select,
+  .va-field textarea {
+    font-size: 16px;
+  }
+}
+
+/* =========================================================
+   21. SMALL MOBILE SCREENS
+========================================================= */
+
+@media (max-width: 390px) {
+  .va-container {
+    width: calc(100% - 32px);
+  }
+
+  .va-hero h1 {
+    font-size: 33px;
+  }
+
+  .va-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .va-actions .va-btn {
+    width: 100%;
+  }
+
+  .va-hero-visual {
+    padding: 13px;
+  }
+
+  .va-workspace-head {
+    padding: 10px;
+  }
+
+  .va-workspace-head strong {
+    font-size: 12px;
+  }
+
+  .va-workspace-indicator {
+    font-size: 7px;
+  }
+
+  .va-workspace-columns {
+    gap: 6px;
+    padding: 7px;
+  }
+
+  .va-workspace-inbox,
+  .va-workspace-calendar,
+  .va-workspace-task {
+    padding: 7px;
+  }
+
+  .va-inbox-item {
+    gap: 5px;
+  }
+
+  .va-inbox-icon {
+    flex-basis: 23px;
+    width: 23px;
+    height: 23px;
+  }
+
+  .va-inbox-item strong {
+    font-size: 8px;
+  }
+
+  .va-inbox-item small {
+    font-size: 7px;
+  }
+
+  .va-calendar-times span {
+    height: 27px;
+  }
+
+  .va-hero-floating strong {
+    font-size: 26px;
+  }
+
+  .va-problem-grid h3 {
+    font-size: 27px;
+  }
+
+  .va-delegate-result {
+    padding: 21px;
+  }
+
+  .va-form-card {
+    padding: 20px;
+  }
+}
+
+/* =========================================================
+   22. ACCESSIBILITY & REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .va-page *,
+  .va-page *::before,
+  .va-page *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .va-motion-ready .va-reveal,
+  .va-motion-ready .va-reveal:not(.is-visible) {
+    opacity: 1;
+    translate: 0 0;
+    transform: none;
+  }
+}
+
+
+/* 2026 contrast correction: Virtual Assistant flexible support cards.
+   Restrict all changes to this section; decorative rings no longer compete
+   with headings or body text on desktop and mobile. */
+.va-flexible .va-flexible-card {
+  background: #f3eeee;
+  color: #291d21;
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 22px 52px rgba(0,0,0,.16);
+}
+.va-flexible .va-flexible-card:nth-child(1) {
+  background: linear-gradient(145deg,#f6f0ef 0%,#eadfdf 100%);
+  color: #2c1e23;
+}
+.va-flexible .va-flexible-card:nth-child(2) {
+  background: linear-gradient(150deg,#80242f 0%,#641823 65%,#491720 100%);
+  color: #fff;
+}
+.va-flexible .va-flexible-card:nth-child(3) {
+  background: linear-gradient(145deg,#28242a,#151417);
+  color: #fff;
+}
+.va-flexible .va-flexible-card::before {
+  opacity: .10;
+  filter: saturate(.48);
+  pointer-events: none;
+}
+.va-flexible .va-flexible-card:nth-child(1)::before { opacity: .085; }
+.va-flexible .va-flexible-card:nth-child(2)::before { opacity: .13; }
+.va-flexible .va-flexible-card:nth-child(3)::before { opacity: .12; }
+.va-flexible .va-flexible-card > span,
+.va-flexible .va-flexible-card h3,
+.va-flexible .va-flexible-card > p,
+.va-flexible .va-flexible-card ul {
+  position: relative;
+  z-index: 3;
+  text-shadow: none;
+}
+.va-flexible .va-flexible-card:nth-child(1) h3 { color:#24171b; }
+.va-flexible .va-flexible-card:nth-child(1) > p,
+.va-flexible .va-flexible-card:nth-child(1) li { color:#48333a; }
+.va-flexible .va-flexible-card:nth-child(2) h3,
+.va-flexible .va-flexible-card:nth-child(3) h3 { color:#fff; }
+.va-flexible .va-flexible-card:nth-child(2) > p,
+.va-flexible .va-flexible-card:nth-child(2) li,
+.va-flexible .va-flexible-card:nth-child(3) > p,
+.va-flexible .va-flexible-card:nth-child(3) li { color:#f1e5e8; }
+.va-flexible .va-flexible-card ul {
+  border-top-width:1px;
+}
+@media (max-width:700px) {
+  .va-flexible .va-flexible-card::before { opacity:.06; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .va-flexible .va-flexible-card::before { animation:none!important; }
+}
