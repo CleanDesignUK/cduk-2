@@ -1,0 +1,83 @@
+name: Update service card navigation
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/card-navigation.yml']
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply card and layout changes
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          contact='/cduk-2/html/contact-web-design-agency-wales.html'
+          gallery='/cduk-2/html/website-design-portfolio-uk.html'
+          css='<style>.cduk-click-card{cursor:pointer;isolation:isolate}.cduk-card-anchor{color:inherit;text-decoration:none;font:inherit}.cduk-card-anchor::after{content:"";position:absolute;inset:0;z-index:5;border-radius:inherit}.cduk-card-anchor:focus-visible{outline:none}.cduk-card-anchor:focus-visible::after{outline:3px solid #df1722;outline-offset:-4px}.cduk-click-card:hover .cduk-card-anchor{text-decoration:underline;text-underline-offset:4px}</style>'
+          js='<script>document.querySelectorAll("[data-cduk-card]").forEach(function(card){if(getComputedStyle(card).position==="static")card.style.position="relative";});</script>'
+          def card(m,dest):
+              opening=re.match(r'<\w+\b[^>]*>',m).group()
+              body=m[len(opening):]
+              h=re.search(r'<h3\b[^>]*>(.*?)</h3>',body,re.S)
+              if not h: return m
+              href=dest(h.group(1)) if callable(dest) else dest
+              if 'data-cduk-card' in opening:return m
+              if 'class="' in opening: opening=re.sub(r'class="([^"]*)"',r'class="\1 cduk-click-card"',opening,count=1)
+              else: opening=opening[:-1]+' class="cduk-click-card">'
+              opening=opening[:-1]+' data-cduk-card="true">'
+              existing=re.search(r'<a\b[^>]*href="[^"]*"[^>]*>',body)
+              if existing:
+                  a=existing.group()
+                  b=re.sub(r'href="[^"]*"',f'href="{href}"',a)
+                  if 'class="' in b:b=re.sub(r'class="([^"]*)"',r'class="\1 cduk-card-anchor"',b,count=1)
+                  else:b=b.replace('<a','<a class="cduk-card-anchor"',1)
+                  body=body.replace(a,b,1)
+              else:body=body[:h.start(1)]+f'<a class="cduk-card-anchor" href="{href}">'+h.group(1)+'</a>'+body[h.end(1):]
+              return opening+body
+          def articles(s,pattern,dest=contact):
+              return re.sub(r'<article\b[^>]*>.*?</article>',lambda m:card(m.group(),dest) if re.search(pattern,m.group().split('>',1)[0]) else m.group(),s,flags=re.S)
+          def section(s,cls):
+              return re.sub(r'<section\b[^>]*class="[^"]*\b'+cls+r'\b[^"]*"[^>]*>.*?</section>',lambda m:articles(m.group(),r'^<article\b'),s,flags=re.S)
+          configs={
+            'html/website-design.html':r'\bwd-(?:offer|type)-card\b',
+            'html/ecommerce.html':r'\bec-(?:service-card|platform-card|feature-item)\b',
+            'html/digital-marketing-agency-north-wales.html':r'\bdm-(?:service|audience)-card\b',
+            'html/seo-agency-north-wales.html':r'\bsv-(?:editorial-text|service-card)\b',
+            'html/virtual-assistant-services-north-wales-uk.html':r'\bva-(?:service-row|flexible-card)\b',
+            'html/gohighlevel-crm-setup-automation-north-wales.html':r'\bgh-(?:capability|deliverable-main|deliverable-small)\b'
+          }
+          for name,pattern in configs.items():
+              p=Path(name);s=p.read_text();n=articles(s,pattern)
+              if 'seo-agency' in name:
+                  n=articles(n,r'\bsv-work-card\b',gallery)
+                  n=re.sub(r'<section\b[^>]*class="sv-focus-panel"[^>]*>.*?</section>',lambda m:card(m.group(),contact),n,flags=re.S)
+              if 'virtual-assistant' in name:
+                  for cls in ['va-problem','va-industries']:n=section(n,cls)
+              assert n!=s,name
+              print(name,n.count('data-cduk-card="true"'))
+              p.write_text(n.replace('</head>',css+'\n</head>').replace('</body>',js+'\n</body>'))
+          p=Path('index.html');s=p.read_text()
+          def home_dest(h):
+              return '/cduk-2/html/'+('website-design.html' if 'Website Design' in h else 'seo-agency-north-wales.html' if 'SEO' in h else 'ecommerce.html' if 'Ecommerce' in h else 'gohighlevel-crm-setup-automation-north-wales.html')
+          s=articles(s,r'\babout-card\b',home_dest)
+          a=re.search(r'<section class="section about-section".*?</section>',s,re.S).group()
+          s=s.replace(a,'',1)
+          s=re.sub(r'<section class="section portfolio-section".*?</section>',lambda m:m.group()+'\n\n'+a,s,count=1,flags=re.S)
+          p.write_text(s.replace('</head>',css+'\n</head>').replace('</body>',js+'\n</body>'))
+          p=Path('html/web-design-digital-services.html');s=p.read_text()
+          def image(m):
+              a=m.group()
+              if not re.search(r'svc-feature|svc-service-card',a.split('>',1)[0]):return a
+              return re.sub(r'(<img\b[^>]*src=")[^"]+',r'\1/cduk-2/images/portfolio/nwt-group-website-designed-by-clean-design-uk.jpg',a,count=1)
+          assert Path('images/portfolio/nwt-group-website-designed-by-clean-design-uk.jpg').exists()
+          s=re.sub(r'<a\b[^>]*href="/cduk-2/html/website-design.html"[^>]*>.*?</a>',image,s,flags=re.S)
+          p.write_text(s)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- '*.html'
+          git diff --cached --quiet || (git commit -m 'Link requested cards and reorder homepage sections' && git push)
