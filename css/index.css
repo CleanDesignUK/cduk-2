@@ -1655,3 +1655,10 @@
 .portfolio-section .portfolio-image{height:auto;aspect-ratio:1.95/1;background:#fff}
 .portfolio-section .portfolio-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
 @media(max-width:768px){.portfolio-section .portfolio-image{height:auto;aspect-ratio:1.95/1}}
+
+/* Full-width CRM card and uncropped project previews */
+.services-section .service-tile-red,.service-tile.service-tile-red{grid-column:1/-1;min-height:170px;padding-right:150px}
+.service-tile-red .automation-art{top:50%;transform:translateY(-50%);right:27px}
+.portfolio-section .portfolio-image{height:auto;aspect-ratio:2.1/1;background:#171717}
+.portfolio-section .portfolio-image img{object-fit:contain;object-position:center;transform:none}
+@media(max-width:600px){.service-tile.service-tile-red{padding:24px;min-height:0}.service-tile-red .automation-art{position:static;transform:none;flex-direction:row;flex-wrap:wrap;height:auto;justify-content:flex-start;margin:12px 0}.automation-art span{min-width:0}.service-tile-red h3{margin-top:0}}

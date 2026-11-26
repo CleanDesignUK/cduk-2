@@ -3805,3 +3805,11 @@ body[data-page="digital-marketing"] main a {
     scroll-behavior: auto;
   }
 }
+
+/* Industries: readable dark theme and complete website previews */
+.dm-audience .dm-heading h2,.dm-audience #dm-industry-title,.dm-audience .dm-audience-content h3{color:#fff!important}
+.dm-audience .dm-heading .dm-kicker,.dm-audience .dm-heading .dm-star{color:#ffb9bd!important}
+.dm-audience .dm-audience-content p{color:#e5dfe2!important}
+.dm-audience .dm-audience-image{height:auto;aspect-ratio:2.1/1;background:#171717}
+.dm-audience .dm-audience-image img{display:block;object-fit:contain;object-position:center;width:100%;height:100%;transform:none}
+.dm-audience .dm-audience-image::after{display:none}
