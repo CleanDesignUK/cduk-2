@@ -1,0 +1,58 @@
+name: Import Clean Design UK website
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/import-site.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out target repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Fetch the verified original website
+        run: git clone --depth 1 https://github.com/CleanDesignUK/cduk.git /tmp/cduk-source
+      - name: Copy one website version into this repository
+        shell: bash
+        run: |
+          rsync -a --delete --exclude='.git/' --exclude='.github/workflows/import-site.yml' /tmp/cduk-source/ ./
+          rm -f CNAME .github/workflows/preview-pages.yml
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          for file in Path('.').rglob('*'):
+              if not file.is_file() or '.git' in file.parts or file.suffix.lower() not in {'.html','.css','.js','.json','.xml','.webmanifest'}:
+                  continue
+              try:
+                  text = file.read_text(encoding='utf-8')
+              except UnicodeDecodeError:
+                  continue
+              text = re.sub(r'(?<![A-Za-z0-9:/])/(?=(?:css|js|images|html|components)/)', '/cduk-2/', text)
+              if file.suffix.lower() == '.html':
+                  text = text.replace('href="/"','href="/cduk-2/"').replace("href='/'","href='/cduk-2/'")
+                  text = re.sub(r'<meta\b[^>]*\bname=["\']robots["\'][^>]*>', '<meta name="robots" content="noindex,nofollow">', text, flags=re.I)
+                  if not re.search(r'<meta\s+name=["\']robots', text, flags=re.I):
+                      text = text.replace('</head>', '<meta name="robots" content="noindex,nofollow">\n</head>', 1)
+                  text = text.replace('</head>', '<meta name="googlebot" content="noindex,nofollow">\n</head>', 1)
+              file.write_text(text, encoding='utf-8')
+          Path('.nojekyll').write_text('')
+          Path('robots.txt').write_text('User-agent: *\nDisallow: /\n')
+          Path('README.md').write_text('# Clean Design UK\n\nSingle GitHub Pages preview of the Clean Design UK website.\n\nPublish from main / (root) in Settings > Pages.\n\nPreview: https://cleandesignuk.github.io/cduk-2/\n\nThe production domain is intentionally not connected here. This preview is noindex and GitHub Pages does not support .htaccess or _redirects.\n')
+          PY
+      - name: Commit the imported website
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Import single Clean Design UK website version"
+            git push origin HEAD:main
+          fi
